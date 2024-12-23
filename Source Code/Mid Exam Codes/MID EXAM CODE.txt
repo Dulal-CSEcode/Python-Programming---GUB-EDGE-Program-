@@ -1,0 +1,150 @@
+1. Write a Python program that takes a string as input from the user and prints the string in reverse order.
+
+
+2. Write a Python program that takes a variable as input and prints its data type.
+
+
+3. Write a Python program to evaluate an arithmetic expression taken as a string input (e.g., "3 * (2 + 5)") using the eval() function.
+
+
+4. Write a program that takes two numbers as input and uses comparison operators (<, >, <=, >=, ==, !=) to show their relationships.
+
+
+5. Write a program to check if a number is prime or not.
+
+
+6. Create a guessing game where the program generates a random number, and the user has a limited number of guesses. Use a loop and conditional statements.
+
+
+7. Write a program to calculate the mean, median, and mode of a list of numbers. Input the list as space-separated numbers, and output the results.
+
+
+8. Write a program to calculate the union, intersection, and symmetric difference of two lists. Take the lists as input from the user.
+
+
+9. Write a program to convert a list of tuples (e.g., [(1, 'a'), (2, 'b')]) into a dictionary and then sort the dictionary by its keys.
+
+
+10. Write a program to read a text file, count the frequency of each word, and save the results into another file. Use file operations to implement this.
+
+
+
+
+
+
+
+
+
+
+
+1. Reverse a string
+
+string = input("Enter a string: ")
+print("Reversed string:", string[::-1])
+
+2. Print data type of a variable
+
+variable = input("Enter a variable: ")
+try:
+    eval_variable = eval(variable)
+    print("Data type:", type(eval_variable))
+except:
+    print("Data type: string")
+
+3. Evaluate an arithmetic expression
+
+expression = input("Enter an arithmetic expression: ")
+try:
+    result = eval(expression)
+    print("Result:", result)
+except:
+    print("Invalid expression")
+
+4. Compare two numbers
+
+num1 = float(input("Enter the first number: "))
+num2 = float(input("Enter the second number: "))
+print(f"{num1} < {num2}: {num1 < num2}")
+print(f"{num1} > {num2}: {num1 > num2}")
+print(f"{num1} <= {num2}: {num1 <= num2}")
+print(f"{num1} >= {num2}: {num1 >= num2}")
+print(f"{num1} == {num2}: {num1 == num2}")
+print(f"{num1} != {num2}: {num1 != num2}")
+
+5. Check if a number is prime
+
+num = int(input("Enter a number: "))
+if num > 1:
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            print(f"{num} is not a prime number")
+            break
+    else:
+        print(f"{num} is a prime number")
+else:
+    print(f"{num} is not a prime number")
+
+6. Guessing game
+
+import random
+number = random.randint(1, 100)
+attempts = 5
+print("Guess the number between 1 and 100. You have 5 attempts.")
+while attempts > 0:
+    guess = int(input("Enter your guess: "))
+    if guess == number:
+        print("Congratulations! You guessed it right.")
+        break
+    elif guess < number:
+        print("Too low!")
+    else:
+        print("Too high!")
+    attempts -= 1
+if attempts == 0:
+    print(f"Sorry, you're out of attempts. The number was {number}.")
+
+7. Calculate mean, median, and mode
+
+from statistics import mean, median, mode
+
+numbers = list(map(float, input("Enter space-separated numbers: ").split()))
+print("Mean:", mean(numbers))
+print("Median:", median(numbers))
+try:
+    print("Mode:", mode(numbers))
+except:
+    print("No unique mode found")
+
+8. Union, intersection, and symmetric difference of two lists
+
+list1 = list(map(int, input("Enter space-separated elements for list 1: ").split()))
+list2 = list(map(int, input("Enter space-separated elements for list 2: ").split()))
+set1, set2 = set(list1), set(list2)
+print("Union:", list(set1 | set2))
+print("Intersection:", list(set1 & set2))
+print("Symmetric Difference:", list(set1 ^ set2))
+
+9. Convert list of tuples to dictionary and sort by keys
+
+tuples = eval(input("Enter a list of tuples (e.g., [(1, 'a'), (2, 'b')]): "))
+dictionary = dict(tuples)
+sorted_dict = dict(sorted(dictionary.items()))
+print("Sorted dictionary:", sorted_dict)
+
+10. Count word frequency and save to a file
+
+input_file = input("Enter the input file name: ")
+output_file = input("Enter the output file name: ")
+
+with open(input_file, 'r') as file:
+    text = file.read()
+words = text.split()
+word_count = {}
+for word in words:
+    word_count[word] = word_count.get(word, 0) + 1
+
+with open(output_file, 'w') as file:
+    for word, count in word_count.items():
+        file.write(f"{word}: {count}\n")
+
+print(f"Word frequencies saved to {output_file}.")
