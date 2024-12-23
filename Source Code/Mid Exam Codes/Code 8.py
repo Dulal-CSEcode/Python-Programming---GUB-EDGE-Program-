@@ -1,0 +1,6 @@
+list1 = list(map(int, input("Enter space-separated elements for list 1: ").split()))
+list2 = list(map(int, input("Enter space-separated elements for list 2: ").split()))
+set1, set2 = set(list1), set(list2)
+print("Union:", list(set1 | set2))
+print("Intersection:", list(set1 & set2))
+print("Symmetric Difference:", list(set1 ^ set2))
